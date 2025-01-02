@@ -19,7 +19,7 @@ gem "tailwindcss-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", ">= 4.0.1"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -50,6 +50,10 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  gem "annotate"
+
+  gem "hotwire-livereload", "~> 1.4"
 end
 
 group :test do
@@ -57,3 +61,17 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "wdm", ">= 0.1.0" if Gem.win_platform?
+
+gem "shadcn-ui", "~> 0.0.15"
+
+gem "tailwind_merge", "~> 0.14.0"
+
+gem "font-awesome-rails", "~> 4.7"
+
+gem "devise", "~> 4.9"
+
+gem "rails-controller-testing"
+
+gem "kaminari"
