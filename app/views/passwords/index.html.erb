@@ -6,6 +6,7 @@
   <% @passwords.each do |password| %>
     <%= render_card(title: password.url,
                     subtitle: password.created_at.strftime("%B %d, %Y"),
+                    icon_link: password.url,
                     link: password_path(password)) do %>
       <div class="p-6 pt-0 flex flex-col gap-2">
         <%= render_label name: "username",
