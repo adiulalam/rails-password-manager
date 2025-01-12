@@ -1,0 +1,27 @@
+<%= render_alert_dialog do %>
+  <%= alert_dialog_trigger do %>
+    <%= render_button variant: :destructive do %>
+      <%= fa_icon "trash-o", class: 'mt-1 mr-1' %>
+      Delete
+    <% end %>
+  <% end %>
+
+  <%= alert_dialog_content do %>
+    <div class="flex flex-col space-y-2 text-center sm:text-left">
+      <h2 class="text-lg font-semibold">Are you absolutely sure?</h2>
+      <p class="text-sm text-muted-foreground">
+        This action cannot be undone. This will permanently delete your password and remove your data from our servers.
+      </p>
+    </div>
+  <% end %>
+
+  <%= alert_dialog_cancel do %>
+    <%= render_button("Cancel", variant: :outline) %>
+  <% end %>
+
+  <%= alert_dialog_continue do %>
+    <%= form_with(url: password_path(password), method: :delete) do %>
+      <%= render_button("Continue", variant: :destructive) %>
+    <% end %>
+  <% end %>
+<% end %>

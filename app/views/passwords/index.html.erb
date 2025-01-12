@@ -1,21 +1,22 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
+<%= render_typography(tag: :h1,
+                      class: 'pb-2',
+                      content: "All Passwords!") %>
 
-  <% content_for :title, "Passwords" %>
+<div class="flex w-full gap-2 flex-wrap">
+  <% @passwords.each do |password| %>
+    <%= render_card(title: password.url,
+                    subtitle: password.created_at.strftime("%B %d, %Y"),
+                    link: password_path(password)) do %>
+      <div class="p-6 pt-0 flex flex-col gap-2">
+        <%= render_label name: "username",
+                         label: "Username / Email:" %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Passwords</h1>
-    <%= link_to "New password", new_password_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="passwords" class="min-w-full">
-    <% @passwords.each do |password| %>
-      <%= render password %>
-      <p>
-        <%= link_to "Show this password", password, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
+        <div class="rounded-lg border bg-secondary text-card-foreground shadow-sm p-1">
+          <%= render_typography(tag: :p, content: password.username) %>
+        </div>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 </div>
+
+<%= render_pagination(@pagination) if @passwords.total_pages > 1 %>

@@ -5,12 +5,12 @@
   Home
   <% end %>
 
-  <!-- Right Section: New Post Button -->
+  <!-- Right Section: New Password Button -->
   <div class="flex gap-2">
     <% if user_signed_in? %>
       <%= render_button as: :link, href: new_password_path do %>
         <%= fa_icon "plus-circle", class: 'mt-1 mr-1' %>
-        New Post
+        New Password
       <% end %>
 
       <%= render "components/navbar/navbar_dropdown" %>

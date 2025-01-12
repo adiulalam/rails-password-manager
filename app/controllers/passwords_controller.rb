@@ -1,10 +1,19 @@
 class PasswordsController < ApplicationController
+  include Components::PaginationHelper
+
   before_action :authenticate_user!
   before_action :set_password, only: %i[ show edit update destroy ]
 
   # GET /passwords or /passwords.json
   def index
-    @passwords = Password.all
+    @passwords = current_user.passwords.order(created_at: :desc).page(params[:page]).per(10)
+
+    @pagination = {
+      prev_page: @passwords.prev_page,
+      next_page: @passwords.next_page,
+      current_page: @passwords.current_page,
+      pages_to_display: pagination_with_ellipsis(@passwords.current_page, @passwords.total_pages)
+    }
   end
 
   # GET /passwords/1 or /passwords/1.json
@@ -23,6 +32,7 @@ class PasswordsController < ApplicationController
   # POST /passwords or /passwords.json
   def create
     @password = Password.new(password_params)
+    @password.user_passwords.new(user: current_user)
 
     respond_to do |format|
       if @password.save
@@ -61,7 +71,7 @@ class PasswordsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_password
-      @password = Password.find(params[:id])
+      @password = current_user.passwords.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
