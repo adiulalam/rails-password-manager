@@ -75,3 +75,5 @@ gem "devise", "~> 4.9"
 gem "rails-controller-testing"
 
 gem "kaminari"
+
+gem "dotenv-rails"
