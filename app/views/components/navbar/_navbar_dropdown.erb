@@ -1,0 +1,37 @@
+<%= render_dropdown_menu do %>
+  <%= dropdown_menu_trigger do %>
+    <%= render_button variant: :outline, class: 'px-2' do %>
+      <%= fa_icon "user-circle 2x", class: 'mt-1' %>
+    <% end %>
+  <% end %>
+
+  <%= dropdown_menu_content do %>
+    <%= dropdown_menu_label "My Account" %>
+    <%= render_separator class: "my-1" %>
+    <%= link_to edit_user_registration_path do %>
+      <%= dropdown_menu_item do %>
+        <%= fa_icon "user", class: 'mt-1 mr-1' %>
+        <span>Profile</span>
+      <% end %>
+    <% end %>
+
+    <%#= link_to my_passwords_passwords_path do %>
+      <%= dropdown_menu_item do %>
+        <%= fa_icon "book", class: 'mt-1 mr-1' %>
+        <span>My Passwords</span>
+      <% end %>
+    <%# end %>
+
+    <%= render_separator class: "my-1" %>
+
+      <%= dropdown_menu_item do %>
+        <%= form_with(url: destroy_user_session_path, method: :delete, class: 'w-full') do %>
+          <%= render_button variant: :destructive, class: 'w-full' do %>
+            Sign Out
+            <%= fa_icon "sign-out", class: 'mt-1 ml-1' %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <%# end %>
+  <% end %>
+<% end %>

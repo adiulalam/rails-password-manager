@@ -20,10 +20,11 @@
   </head>
 
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <%= render_navbar(home_path: root_path, new_password_path: new_password_path) %>
+    <p class="notice flex items-center justify-center"><%= notice %></p>
+    <p class="alert flex items-center justify-center"><%= alert %></p>
 
-  <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto p-5">
       <%= yield %>
     </main>
   </body>

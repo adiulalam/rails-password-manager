@@ -1,26 +1,27 @@
-<h2>Log in</h2>
+<div class="flex flex-col items-center gap-4 justify-center">
+  <%= render_card title: "Log in to your account" do %>
+    <%= render_form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
+      <div class="p-6 pt-0">
+        <%= form.label :email %>
+        <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "col-span-2" %>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="p-6 pt-0">
+        <%= form.label :password %>
+        <%= form.password_field :password, autocomplete: "current-password", class: "col-span-2" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="p-6 pt-0 flex items-center">
+          <%= form.check_box :remember_me, class: "mr-2" %>
+          <%= form.label :remember_me, class: "text-sm" %>
+        </div>
+      <% end %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
+      <div class="flex flex-col gap-2 items-center justify-center mb-8">
+        <%= form.submit "Log in" %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+      </div>
+    <% end %>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

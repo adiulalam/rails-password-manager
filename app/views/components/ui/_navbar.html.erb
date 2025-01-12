@@ -1,0 +1,29 @@
+<nav class="<%= tw('flex items-center justify-between bg-primary p-4 shadow-md') %>">
+  <!-- Left Section: Home Icon -->
+  <%= link_to home_path, class: tw('flex items-center text-xl font-semibold hover:text-primary-dark text-primary-foreground') do %>
+  <%= fa_icon "home", class: "mt-1 mr-2" %>
+  Home
+  <% end %>
+
+  <!-- Right Section: New Post Button -->
+  <div class="flex gap-2">
+    <% if user_signed_in? %>
+      <%= render_button as: :link, href: new_password_path do %>
+        <%= fa_icon "plus-circle", class: 'mt-1 mr-1' %>
+        New Post
+      <% end %>
+
+      <%= render "components/navbar/navbar_dropdown" %>
+    <% else %>
+      <%= render_button as: :link, href: new_user_registration_path do %>
+        <%= fa_icon "user-plus", class: 'mt-1 mr-1' %>
+        Sign Up
+      <% end %>
+
+      <%= render_button as: :link, href: new_user_session_path, variant: :secondary do %>
+        <%= fa_icon "sign-in", class: 'mt-1 mr-1' %>
+        Login
+      <% end %>
+    <% end %>
+  </div>
+</nav>
