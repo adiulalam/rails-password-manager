@@ -9,11 +9,15 @@
                     icon_link: password.url,
                     link: password_path(password)) do %>
       <div class="p-6 pt-0 flex flex-col gap-2">
-        <%= render_label name: "username",
-                         label: "Username / Email:" %>
+        <%= render_label name: "username", label: "Username / Email:" %>
 
-        <div class="rounded-lg border bg-secondary text-card-foreground shadow-sm p-1">
+        <div class="flex gap-2 justify-between items-center rounded-lg border bg-secondary text-card-foreground shadow-sm p-1">
           <%= render_typography(tag: :p, content: password.username) %>
+
+          <%= render_button variant: :ghost, class: "h-6",
+                            data: { controller: "clipboard", action: "click->clipboard#copy", clipboard_content_value: password.username } do %>
+            <%= fa_icon "clipboard", class: 'mt-1 mr-1' %>
+          <% end %>
         </div>
       </div>
     <% end %>
