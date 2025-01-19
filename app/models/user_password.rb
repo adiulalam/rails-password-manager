@@ -7,6 +7,7 @@
 #  password_id :bigint           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  role        :string
 #
 class UserPassword < ApplicationRecord
   # View can only view the password
