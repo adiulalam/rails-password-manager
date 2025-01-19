@@ -1,0 +1,30 @@
+<%= render_card title: (user_password.persisted? ? "Edit Share" : "New Share") do %>
+  <%= render_form_for(user_password, url: password_shares_path(password)) do |form| %>
+    <div class="p-6 pt-0">
+      <%= form.label :user_id, class: "text-right mr-4 text-lg" %>
+      <%= form.select_field :user_id do |select| %>
+        <% @users.each do |user| %>
+          <%= select.option value: user.id, label: user.email do %>
+            <%= user.email %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if user_password.errors.any? %>
+      <div class="text-red-500 p-6 pt-0">
+        <h2><%= pluralize(user_password.errors.count, "error") %> prohibited this password from being saved:</h2>
+
+        <ul>
+          <% user_password.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="flex justify-center mb-8">
+      <%= form.submit user_password.persisted? ? "Edit Share" : "Create Share" %>
+    </div>
+  <% end %>
+<% end %>

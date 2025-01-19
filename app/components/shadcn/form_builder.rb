@@ -5,6 +5,11 @@ class Shadcn::FormBuilder < ActionView::Helpers::FormBuilder
     @template.render_label(name: "#{object_name}[#{method}]", label: label_for(@object, method), **options)
   end
 
+  def select_field(method, options = {}, html_options = {}, &block)
+    selected_value = @object.send(method)
+    @template.render_select(name: "#{object_name}[#{method}]", selected: selected_value, **options, &block)
+  end
+
   def text_field(method, options = {})
     error_class = @object.errors[method].any? ? "error" : ""
     options[:class] = @template.tw("#{options[:class]} #{error_class}")
