@@ -8,7 +8,7 @@ module Components::PaginationHelper
       concat(
         render_button("Previous", variant: :secondary, disabled: pagination[:prev_page].nil?,
                       as: :link, href: pagination[:prev_page] ? url_for(current_params.merge(page: pagination[:prev_page])) : "#") do
-          concat(fa_icon("angle-double-left ", class: 'mt-1 mr-1'))
+          concat(fa_icon("angle-double-left ", class: "mt-1 mr-1"))
           concat(content_tag(:span, "Previous"))
         end
       )
@@ -30,7 +30,7 @@ module Components::PaginationHelper
         render_button("Next", variant: :secondary, disabled: pagination[:next_page].nil?,
                       as: :link, href: pagination[:next_page] ? url_for(current_params.merge(page: pagination[:next_page])) : "#") do
           concat(content_tag(:span, "Next"))
-          concat(fa_icon("angle-double-right ", class: 'mt-1 ml-1'))
+          concat(fa_icon("angle-double-right ", class: "mt-1 ml-1"))
         end
       )
     end

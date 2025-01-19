@@ -3,6 +3,8 @@ class PasswordsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_password, only: %i[ show edit update destroy ]
+  before_action :require_editable_permission, only: [ :edit, :update ]
+  before_action :require_deletable_permission, only: [ :destroy ]
 
   # GET /passwords or /passwords.json
   def index
@@ -77,5 +79,13 @@ class PasswordsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def password_params
       params.require(:password).permit(:url, :username, :password)
+    end
+
+    def require_editable_permission
+      redirect_to @password unless current_user_password.editable?
+    end
+
+    def require_deletable_permission
+      redirect_to @password unless current_user_password.deletable?
     end
 end
