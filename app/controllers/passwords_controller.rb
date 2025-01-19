@@ -32,7 +32,7 @@ class PasswordsController < ApplicationController
   # POST /passwords or /passwords.json
   def create
     @password = Password.new(password_params)
-    @password.user_passwords.new(user: current_user)
+    @password.user_passwords.new(user: current_user, role: :owner)
 
     respond_to do |format|
       if @password.save
