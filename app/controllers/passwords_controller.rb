@@ -8,7 +8,7 @@ class PasswordsController < ApplicationController
 
   # GET /passwords or /passwords.json
   def index
-    @passwords = current_user.passwords.order(created_at: :desc).page(params[:page]).per(10)
+    @passwords = current_user.user_passwords.order(created_at: :desc).page(params[:page]).per(10)
 
     @pagination = {
       prev_page: @passwords.prev_page,

@@ -3,19 +3,20 @@
                       content: "All Passwords!") %>
 
 <div class="flex w-full gap-2 flex-wrap">
-  <% @passwords.each do |password| %>
-    <%= render_card(title: password.url,
-                    subtitle: password.created_at.strftime("%B %d, %Y"),
-                    icon_link: password.url,
-                    link: password_path(password)) do %>
+  <% @passwords.each do |user_password| %>
+    <%= render_card(title: user_password.password.url,
+                    subtitle: user_password.password.created_at.strftime("%B %d, %Y"),
+                    icon_link: user_password.password.url,
+                    link: password_path(user_password.password)) do %>
       <div class="p-6 pt-0 flex flex-col gap-2">
+        <%= render_badge text: user_password.role.capitalize %>
         <%= render_label name: "username", label: "Username / Email:" %>
 
         <div class="flex gap-2 justify-between items-center rounded-lg border bg-secondary text-card-foreground shadow-sm p-1">
-          <%= render_typography(tag: :p, content: password.username) %>
+          <%= render_typography(tag: :p, content: user_password.password.username) %>
 
           <%= render_button variant: :ghost, class: "h-6",
-                            data: { controller: "clipboard", action: "click->clipboard#copy", clipboard_content_value: password.username } do %>
+                            data: { controller: "clipboard", action: "click->clipboard#copy", clipboard_content_value: user_password.password.username } do %>
             <%= fa_icon "clipboard", class: 'mt-1 mr-1' %>
           <% end %>
         </div>
