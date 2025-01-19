@@ -116,6 +116,8 @@ GEM
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.1)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.17.0-x64-mingw-ucrt)
     ffi (1.17.0-x86_64-linux-gnu)
     font-awesome-rails (4.7.0.9)
@@ -354,6 +356,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   dotenv-rails
+  faker
   font-awesome-rails (~> 4.7)
   hotwire-livereload (~> 1.4)
   importmap-rails

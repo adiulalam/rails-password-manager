@@ -54,6 +54,8 @@ group :development do
   gem "annotate"
 
   gem "hotwire-livereload", "~> 1.4"
+
+  gem "faker"
 end
 
 group :test do
